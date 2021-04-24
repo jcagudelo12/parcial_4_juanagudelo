@@ -4,13 +4,12 @@ import { Icon } from "react-native-elements";
 import { useFocusEffect } from "@react-navigation/native";
 import firebase from "firebase/app";
 import Loading from "../../components/Loading";
-import { getMoreTasks, getTasks, getCurrentUser } from "../../utils/actions";
+import { getTasks, getCurrentUser } from "../../utils/actions";
 import { size } from "lodash";
 import ListTasks from "../../components/tasks/ListTasks";
 
 export default function Tasks({ navigation }) {
   const [user, setUser] = useState(null);
-  const [startTask, setStartTask] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,7 +25,6 @@ export default function Tasks({ navigation }) {
         setLoading(true);
         const response = await getTasks(getCurrentUser().uid);
         if (response.statusResponse) {
-          setStartTask(response.startTask);
           setTasks(response.tasks);
         }
         setLoading(false);

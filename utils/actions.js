@@ -24,16 +24,13 @@ export const getTasks = async (user) => {
     statusResponse: true,
     error: null,
     tasks: [],
-    startTask: null,
   };
   try {
     const response = await db
       .collection("tasks")
       .where("user", "==", user)
       .get();
-    if (response.docs.length > 0) {
-      result.startTask = response.docs[response.docs.length - 1];
-    }
+
     response.forEach((doc) => {
       const task = doc.data();
       task.id = doc.id;
