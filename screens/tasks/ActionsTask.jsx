@@ -8,7 +8,6 @@ import ActionsTaskForm from "../../components/tasks/ActionsTaskForm";
 
 export default function ActionsTask({ navigation, route }) {
   const toastRef = useRef();
-  const [loading, setLoading] = useState(false);
   return (
     <KeyboardAwareScrollView>
       <ActionsTaskForm
@@ -16,7 +15,6 @@ export default function ActionsTask({ navigation, route }) {
         navigation={navigation}
         route={route}
       />
-      {/* <Loading isVisible={loading} text="Creando tarea..." /> */}
       <Toast ref={toastRef} position="center" opacity={0.9} />
     </KeyboardAwareScrollView>
   );

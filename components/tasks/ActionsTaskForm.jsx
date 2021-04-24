@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, Alert } from "react-native";
 import { Button, Input } from "react-native-elements";
 
 import {
@@ -29,13 +29,41 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
     setLoading(false);
     if (!responseUpdateDocument.statusResponse) {
       toastRef.current.show(
-        "Error al grabar la tarea, por favor intenta más tarde.",
+        "Error al editar la tarea, por favor intenta más tarde.",
         3000
       );
       return;
     }
 
     navigation.navigate("tasks");
+  };
+
+  const deleteTask = async () => {
+    if (!validForm()) {
+      return;
+    }
+    Alert.alert("Esta seguro de eliminar la tarea: ", formData.name, [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "OK",
+        onPress: async () => {
+          setLoading(true);
+          const responseDeleteDocument = await deleteDocument("tasks", id);
+          setLoading(false);
+          if (!responseDeleteDocument.statusResponse) {
+            toastRef.current.show(
+              "Error al eliminar la tarea, por favor intenta más tarde.",
+              3000
+            );
+            return;
+          }
+          navigation.navigate("tasks");
+        },
+      },
+    ]);
   };
 
   const validForm = () => {
@@ -68,7 +96,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
       />
       <Button
         title="Eliminar Tarea"
-        // onPress={DeleteTask}
+        onPress={deleteTask}
         buttonStyle={styles.btnDeleteTask}
       />
       <Loading isVisible={loading} text="Actualizando tarea..." />
