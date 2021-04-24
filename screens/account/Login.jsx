@@ -1,16 +1,19 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-// import { Divider } from "react-native-elements";
+import { Image, StyleSheet, View } from "react-native";
 import LoginForm from "../../components/account/LoginForm";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Login() {
   return (
     <KeyboardAwareScrollView>
+      <Image
+        source={require("../../assets/logo.png")}
+        resizeMode="contain"
+        style={styles.image}
+      />
       <View style={styles.container}>
         <LoginForm />
       </View>
-      {/* <Divider style={styles.divider} /> */}
     </KeyboardAwareScrollView>
   );
 }
@@ -19,14 +22,11 @@ const styles = StyleSheet.create({
   image: {
     height: 150,
     width: "100%",
+    marginTop: 50,
     marginBottom: 20,
   },
   container: {
     marginHorizontal: 40,
-  },
-  divider: {
-    backgroundColor: "#442484",
-    margin: 40,
   },
   register: {
     marginTop: 15,
