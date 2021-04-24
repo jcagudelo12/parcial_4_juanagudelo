@@ -93,6 +93,7 @@ const defaultFormValues = () => {
 const styles = StyleSheet.create({
   viewContainer: {
     height: "100%",
+    marginTop: "50%",
   },
   viewForm: {
     marginHorizontal: 10,
