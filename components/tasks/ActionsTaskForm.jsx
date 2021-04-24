@@ -16,6 +16,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
   const [formData, setFormData] = useState(defaultFormValues(name));
   const [errorName, setErrorName] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [textLoading, setTextLoading] = useState();
 
   const editTask = async () => {
     if (!validForm()) {
@@ -23,6 +24,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
     }
 
     setLoading(true);
+    setTextLoading("Actualizando tarea...");
     const responseUpdateDocument = await updateDocument("tasks", id, {
       name: formData.name,
     });
@@ -44,13 +46,14 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
     }
     Alert.alert("Esta seguro de eliminar la tarea: ", formData.name, [
       {
-        text: "Cancel",
+        text: "NO",
         style: "cancel",
       },
       {
-        text: "OK",
+        text: "SI",
         onPress: async () => {
           setLoading(true);
+          setTextLoading("Eliminando tarea...");
           const responseDeleteDocument = await deleteDocument("tasks", id);
           setLoading(false);
           if (!responseDeleteDocument.statusResponse) {
@@ -99,7 +102,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
         onPress={deleteTask}
         buttonStyle={styles.btnDeleteTask}
       />
-      <Loading isVisible={loading} text="Actualizando tarea..." />
+      <Loading isVisible={loading} text={textLoading} />
     </ScrollView>
   );
 }

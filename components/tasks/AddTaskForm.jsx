@@ -56,7 +56,7 @@ export default function AddTaskForm({ toastRef, setLoading, navigation }) {
       />
 
       <Button
-        title="Adicionar Terea"
+        title="Adicionar Tarea"
         onPress={addTask}
         buttonStyle={styles.btnAddTask}
       />
