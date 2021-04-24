@@ -19,7 +19,7 @@ export default function Tasks({ navigation }) {
       userInfo ? setUser(true) : setUser(false);
     });
   }, []);
-  console.log(getCurrentUser().uid);
+
   useFocusEffect(
     useCallback(async () => {
       async function getData() {
@@ -37,6 +37,10 @@ export default function Tasks({ navigation }) {
 
   return (
     <View style={styles.viewBody}>
+      <Text style={styles.userText}>
+        <Text style={styles.welcomeText}>Bienvenido: </Text>
+        {getCurrentUser().email}
+      </Text>
       {size(tasks) > 0 ? (
         <ListTasks tasks={tasks} navigation={navigation} />
       ) : (
@@ -70,6 +74,13 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.5,
+  },
+  welcomeText: {
+    fontWeight: "bold",
+  },
+  userText: {
+    alignSelf: "center",
+    marginVertical: 10,
   },
   notFoundView: {
     flex: 1,
