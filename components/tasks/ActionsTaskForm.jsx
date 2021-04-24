@@ -44,7 +44,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
     if (!validForm()) {
       return;
     }
-    Alert.alert("Esta seguro de eliminar la tarea: ", formData.name, [
+    Alert.alert("Esta seguro que desea completar la tarea: ", formData.name, [
       {
         text: "NO",
         style: "cancel",
@@ -53,7 +53,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
         text: "SI",
         onPress: async () => {
           setLoading(true);
-          setTextLoading("Eliminando tarea...");
+          setTextLoading("Completando tarea...");
           const responseDeleteDocument = await deleteDocument("tasks", id);
           setLoading(false);
           if (!responseDeleteDocument.statusResponse) {
