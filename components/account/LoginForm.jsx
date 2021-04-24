@@ -30,7 +30,6 @@ export default function LoginForm() {
       formData.email,
       formData.password
     );
-    console.log(result);
     setLoading(false);
     if (!result.statusResponse) {
       setErrorEmail(result.error);
@@ -45,17 +44,17 @@ export default function LoginForm() {
     let isValid = true;
 
     if (!validateEmail(formData.email)) {
-      setErrorEmail("Debes de ingresar un email valido");
+      setErrorEmail("Debes de ingresar un email válido.");
       isValid = false;
     }
 
     if (size(formData.password) < 6) {
-      setErrorPassword("La contraseña ingresada es muy corta");
+      setErrorPassword("La contraseña ingresada es muy corta.");
       isValid = false;
     }
 
     if (isEmpty(formData.password)) {
-      setErrorPassword("Debes ingresar una contraseña");
+      setErrorPassword("Debes ingresar una contraseña.");
       isValid = false;
     }
 
