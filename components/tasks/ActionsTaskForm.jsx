@@ -98,7 +98,7 @@ export default function ActionsTaskForm({ toastRef, navigation, route }) {
         buttonStyle={styles.btnEditTask}
       />
       <Button
-        title="Eliminar Tarea"
+        title="Completar Tarea"
         onPress={deleteTask}
         buttonStyle={styles.btnDeleteTask}
       />
