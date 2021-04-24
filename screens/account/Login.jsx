@@ -20,7 +20,7 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   image: {
-    height: 150,
+    height: 180,
     width: "100%",
     marginTop: 50,
     marginBottom: 20,
