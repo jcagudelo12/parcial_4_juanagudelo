@@ -55,3 +55,25 @@ export const addDocumentWithoutId = async (collection, data) => {
 
   return result;
 };
+
+export const updateDocument = async (collection, id, data) => {
+  const result = { statusResponse: true, error: null };
+  try {
+    await db.collection(collection).doc(id).update(data);
+  } catch (error) {
+    result.statusResponse = false;
+    result.error = error;
+  }
+  return result;
+};
+
+export const deleteDocument = async (collection, id, data) => {
+  const result = { statusResponse: true, error: null };
+  try {
+    await db.collection(collection).deleteDocument(id);
+  } catch (error) {
+    result.statusResponse = false;
+    result.error = error;
+  }
+  return result;
+};

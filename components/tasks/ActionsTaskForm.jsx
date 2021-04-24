@@ -3,27 +3,31 @@ import { isEmpty } from "lodash";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { Button, Input } from "react-native-elements";
 
-import { addDocumentWithoutId, getCurrentUser } from "../../utils/actions";
+import {
+  updateDocument,
+  deleteDocument,
+  getCurrentUser,
+} from "../../utils/actions";
 
-export default function ActionsTaskForm({ navigation, route }) {
+import Loading from "../Loading";
+
+export default function ActionsTaskForm({ toastRef, navigation, route }) {
   const { id, name } = route.params;
   const [formData, setFormData] = useState(defaultFormValues(name));
   const [errorName, setErrorName] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  console.log(id);
   const editTask = async () => {
     if (!validForm()) {
       return;
     }
 
     setLoading(true);
-    const task = {
+    const responseUpdateDocument = await updateDocument("tasks", id, {
       name: formData.name,
-      user: getCurrentUser().uid,
-    };
-    const responseAddDocument = await addDocumentWithoutId("tasks", task);
+    });
     setLoading(false);
-    if (!responseAddDocument.statusResponse) {
+    if (!responseUpdateDocument.statusResponse) {
       toastRef.current.show(
         "Error al grabar la tarea, por favor intenta más tarde.",
         3000
@@ -67,6 +71,7 @@ export default function ActionsTaskForm({ navigation, route }) {
         // onPress={DeleteTask}
         buttonStyle={styles.btnDeleteTask}
       />
+      <Loading isVisible={loading} text="Actualizando tarea..." />
     </ScrollView>
   );
 }

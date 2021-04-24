@@ -13,11 +13,10 @@ export default function ActionsTask({ navigation, route }) {
     <KeyboardAwareScrollView>
       <ActionsTaskForm
         toastRef={toastRef}
-        setLoading={setLoading}
         navigation={navigation}
         route={route}
       />
-      <Loading isVisible={loading} text="Creando tarea..." />
+      {/* <Loading isVisible={loading} text="Creando tarea..." /> */}
       <Toast ref={toastRef} position="center" opacity={0.9} />
     </KeyboardAwareScrollView>
   );
