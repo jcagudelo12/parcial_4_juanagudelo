@@ -15,17 +15,17 @@ export default function ListTasks({ tasks, navigation }) {
         data={tasks}
         keyExtractor={(index) => index.toString()}
         onEndReachedThreshold={0.5}
-        renderItem={(task) => <Task task={task} />}
+        renderItem={(task) => <Task task={task} navigation={navigation} />}
       />
     </View>
   );
 }
 
-const Task = ({ task }) => {
+const Task = ({ task, navigation }) => {
   const { id, name, user } = task.item;
 
   const goTask = () => {
-    console.log("Presioné la tarea: ", name);
+    navigation.navigate("actions-task", { id, name });
   };
   return (
     <TouchableOpacity onPress={goTask}>

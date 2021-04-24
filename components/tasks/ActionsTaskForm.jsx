@@ -1,15 +1,17 @@
+import React, { useState, useEffect } from "react";
 import { isEmpty } from "lodash";
-import React, { useState } from "react";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { Button, Input } from "react-native-elements";
 
 import { addDocumentWithoutId, getCurrentUser } from "../../utils/actions";
 
-export default function AddTaskForm({ toastRef, setLoading, navigation }) {
-  const [formData, setFormData] = useState(defaultFormValues());
+export default function ActionsTaskForm({ navigation, route }) {
+  const { id, name } = route.params;
+  const [formData, setFormData] = useState(defaultFormValues(name));
   const [errorName, setErrorName] = useState(null);
 
-  const addTask = async () => {
+  console.log(id);
+  const editTask = async () => {
     if (!validForm()) {
       return;
     }
@@ -56,9 +58,14 @@ export default function AddTaskForm({ toastRef, setLoading, navigation }) {
       />
 
       <Button
-        title="Adicionar Terea"
-        onPress={addTask}
-        buttonStyle={styles.btnAddTask}
+        title="Editar Tarea"
+        onPress={editTask}
+        buttonStyle={styles.btnEditTask}
+      />
+      <Button
+        title="Eliminar Tarea"
+        // onPress={DeleteTask}
+        buttonStyle={styles.btnDeleteTask}
       />
     </ScrollView>
   );
@@ -82,9 +89,9 @@ const FormAdd = ({ formData, setFormData, errorName }) => {
   );
 };
 
-const defaultFormValues = () => {
+const defaultFormValues = (name) => {
   return {
-    name: "",
+    name: name,
     user: "",
   };
 };
@@ -101,8 +108,12 @@ const styles = StyleSheet.create({
     height: 100,
     width: "100%",
   },
-  btnAddTask: {
+  btnEditTask: {
     margin: 20,
     backgroundColor: "#442484",
+  },
+  btnDeleteTask: {
+    margin: 20,
+    backgroundColor: "red",
   },
 });

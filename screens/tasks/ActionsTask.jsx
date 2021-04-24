@@ -4,17 +4,18 @@ import Toast from "react-native-easy-toast";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Loading from "../../components/Loading";
 
-import AddTaskForm from "../../components/tasks/AddTaskForm";
+import ActionsTaskForm from "../../components/tasks/ActionsTaskForm";
 
-export default function AddTask({ navigation }) {
+export default function ActionsTask({ navigation, route }) {
   const toastRef = useRef();
   const [loading, setLoading] = useState(false);
   return (
     <KeyboardAwareScrollView>
-      <AddTaskForm
+      <ActionsTaskForm
         toastRef={toastRef}
         setLoading={setLoading}
         navigation={navigation}
+        route={route}
       />
       <Loading isVisible={loading} text="Creando tarea..." />
       <Toast ref={toastRef} position="center" opacity={0.9} />

@@ -40,7 +40,6 @@ export const getTasks = async (user) => {
     result.statusResponse = false;
     result.error = error;
   }
-  console.log(result.tasks);
 
   return result;
 };
