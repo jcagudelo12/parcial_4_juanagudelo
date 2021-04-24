@@ -51,7 +51,7 @@ export default function Tasks({ navigation }) {
           color="#442484"
           reverse
           containerStyle={styles.btnContainer}
-          // onPress={() => navigation.navigate("add-task")}
+          onPress={() => navigation.navigate("add-task")}
         />
       )}
       <Loading isVisible={loading} text="Cargando tareas..." />

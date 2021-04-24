@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/account/Login";
 import Tasks from "../screens/tasks/Tasks";
+import AddTask from "../screens/tasks/AddTask";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,11 @@ export default function TaskStack() {
           name="tasks"
           component={Tasks}
           options={{ title: "Tareas" }}
+        />
+        <Stack.Screen
+          name="add-task"
+          component={AddTask}
+          options={{ title: "Agregar tarea" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
